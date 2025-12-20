@@ -1,0 +1,17 @@
+services:
+  khems-dev:
+    build: .
+    container_name: khems-dev
+    restart: unless-stopped
+    networks:
+      - hosting
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.khems-dev.rule=Host(`khems-dev.zunkireelabs.com`)"
+      - "traefik.http.routers.khems-dev.entrypoints=websecure"
+      - "traefik.http.routers.khems-dev.tls.certresolver=letsencrypt"
+      - "traefik.http.services.khems-dev.loadbalancer.server.port=80"
+
+networks:
+  hosting:
+    external: true

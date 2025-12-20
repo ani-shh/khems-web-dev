@@ -1,0 +1,22 @@
+services:
+  khems-prod:
+    build: .
+    container_name: khems-prod
+    restart: unless-stopped
+    networks:
+      - hosting
+    labels:
+      - "traefik.enable=true"
+      # Update this domain when production URL is ready
+      - "traefik.http.routers.khems-prod.rule=Host(`khemscleaning.com`) || Host(`www.khemscleaning.com`)"
+      - "traefik.http.routers.khems-prod.entrypoints=websecure"
+      - "traefik.http.routers.khems-prod.tls.certresolver=letsencrypt"
+      - "traefik.http.services.khems-prod.loadbalancer.server.port=80"
+      # Redirect www to non-www
+      - "traefik.http.middlewares.khems-www-redirect.redirectregex.regex=^https://www\\.khemscleaning\\.com/(.*)"
+      - "traefik.http.middlewares.khems-www-redirect.redirectregex.replacement=https://khemscleaning.com/$${1}"
+      - "traefik.http.routers.khems-prod.middlewares=khems-www-redirect"
+
+networks:
+  hosting:
+    external: true
