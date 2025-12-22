@@ -16,8 +16,8 @@ import {
 const safetyFeatures = [
   {
     icon: Shield,
-    title: "Fully Insured",
-    description: "All our services are fully insured, giving you peace of mind and protection.",
+    title: "ISO Certified",
+    description: "We follow ISO-certified quality standards ensuring consistent, reliable service.",
   },
   {
     icon: FileCheck,
