@@ -7,7 +7,17 @@ interface FormData {
   fullName: string;
   location: string;
   contactNumber: string;
+  service: string;
+  remarks: string;
 }
+
+const SERVICES = [
+  { value: "", label: "Select a service" },
+  { value: "residential", label: "Residential Cleaning" },
+  { value: "commercial", label: "Commercial Cleaning" },
+  { value: "specialized", label: "Specialized Services (Sofa, Carpet, Water Tank)" },
+  { value: "move-in-out", label: "Move In/Out Cleaning" },
+];
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -18,11 +28,15 @@ export function ContactForm() {
     fullName: "",
     location: "",
     contactNumber: "",
+    service: "",
+    remarks: "",
   });
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -38,6 +52,8 @@ export function ContactForm() {
       formDataToSend.append("fullName", formData.fullName);
       formDataToSend.append("location", formData.location);
       formDataToSend.append("contactNumber", formData.contactNumber);
+      formDataToSend.append("service", formData.service);
+      formDataToSend.append("remarks", formData.remarks);
       formDataToSend.append("timestamp", new Date().toISOString());
 
       await fetch(GOOGLE_SCRIPT_URL, {
@@ -48,7 +64,7 @@ export function ContactForm() {
 
       // With no-cors mode, we can't read the response, so we assume success
       setStatus("success");
-      setFormData({ fullName: "", location: "", contactNumber: "" });
+      setFormData({ fullName: "", location: "", contactNumber: "", service: "", remarks: "" });
     } catch (error) {
       setStatus("error");
       setErrorMessage("Something went wrong. Please try again.");
@@ -138,6 +154,47 @@ export function ContactForm() {
           required
           placeholder="Enter your phone number"
           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0D9488] focus:border-transparent outline-none transition-all"
+        />
+      </div>
+
+      <div>
+        <label
+          htmlFor="service"
+          className="block text-sm font-medium text-gray-700 mb-1.5"
+        >
+          Service Interested In <span className="text-red-500">*</span>
+        </label>
+        <select
+          id="service"
+          name="service"
+          value={formData.service}
+          onChange={handleChange}
+          required
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0D9488] focus:border-transparent outline-none transition-all bg-white"
+        >
+          {SERVICES.map((service) => (
+            <option key={service.value} value={service.value}>
+              {service.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label
+          htmlFor="remarks"
+          className="block text-sm font-medium text-gray-700 mb-1.5"
+        >
+          Queries / Remarks
+        </label>
+        <textarea
+          id="remarks"
+          name="remarks"
+          value={formData.remarks}
+          onChange={handleChange}
+          rows={4}
+          placeholder="Enter any specific queries or remarks..."
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0D9488] focus:border-transparent outline-none transition-all resize-none"
         />
       </div>
 
