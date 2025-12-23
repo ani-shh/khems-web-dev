@@ -4,104 +4,255 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/layout/Container";
 import { MapPin, Calendar, Eye } from "lucide-react";
+import Image from "next/image";
 
 const categories = [
   { id: "all", label: "All Projects" },
-  { id: "residential", label: "Residential" },
   { id: "commercial", label: "Commercial" },
-  { id: "specialized", label: "Specialized" },
+  { id: "healthcare", label: "Healthcare" },
+  { id: "hospitality", label: "Hospitality" },
 ];
 
 const projects = [
   {
     id: 1,
-    title: "Luxury Apartment Deep Clean",
-    category: "residential",
-    location: "Lazimpat, Kathmandu",
-    date: "December 2024",
-    description: "Complete deep cleaning of a 3-bedroom luxury apartment including kitchen, bathrooms, and living areas.",
-    services: ["Deep Cleaning", "Kitchen Cleaning", "Bathroom Sanitization"],
-    image: null,
+    title: "HAMS Hospital",
+    category: "healthcare",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Complete facility cleaning and sanitization for HAMS Hospital, ensuring highest hygiene standards for patient care areas.",
+    services: ["Hospital Cleaning", "Sanitization", "Floor Care"],
+    image: "/images/portfolio/HAMS Hospital.png",
   },
   {
     id: 2,
-    title: "Corporate Office Transformation",
-    category: "commercial",
-    location: "Durbar Marg, Kathmandu",
-    date: "November 2024",
-    description: "Full office cleaning for a 5000 sq ft corporate space with 50+ workstations.",
-    services: ["Office Cleaning", "Carpet Cleaning", "Window Cleaning"],
-    image: null,
+    title: "Nepal Police Hospital",
+    category: "healthcare",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Professional cleaning services for Nepal Police Hospital including all departments and common areas.",
+    services: ["Hospital Cleaning", "Deep Cleaning", "Sanitization"],
+    image: "/images/portfolio/Nepal Police Hospital.jpeg",
   },
   {
     id: 3,
-    title: "Restaurant Kitchen Deep Clean",
-    category: "commercial",
-    location: "Thamel, Kathmandu",
-    date: "November 2024",
-    description: "Industrial kitchen deep cleaning with degreasing and sanitization for a popular restaurant.",
-    services: ["Kitchen Deep Clean", "Degreasing", "Sanitization"],
-    image: null,
+    title: "Nepal Orthopedic Hospital",
+    category: "healthcare",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Specialized cleaning for orthopedic facility with focus on sterile environments and patient areas.",
+    services: ["Medical Facility Cleaning", "Sanitization"],
+    image: "/images/portfolio/Nepal Orthopedic Hospital.jpg",
   },
   {
     id: 4,
-    title: "Villa Post-Construction Cleanup",
-    category: "residential",
-    location: "Budhanilkantha",
-    date: "October 2024",
-    description: "Complete post-construction cleaning of a newly built 4-bedroom villa.",
-    services: ["Post-Construction", "Window Cleaning", "Floor Polishing"],
-    image: null,
+    title: "ALFA Diagnostic Centre",
+    category: "healthcare",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Thorough cleaning of diagnostic center including lab areas and waiting rooms.",
+    services: ["Lab Cleaning", "Sanitization", "Floor Care"],
+    image: "/images/portfolio/ALFA DIAGNOSTIC CENTRE.avif",
   },
   {
     id: 5,
-    title: "Hotel Lobby Marble Restoration",
-    category: "specialized",
-    location: "Naxal, Kathmandu",
-    date: "October 2024",
-    description: "Marble floor polishing and restoration for a 5-star hotel lobby.",
-    services: ["Marble Polishing", "Floor Restoration"],
-    image: null,
+    title: "Himalayan Java Hattisar",
+    category: "hospitality",
+    location: "Hattisar, Kathmandu",
+    date: "2024",
+    description: "Complete cafe cleaning including kitchen, seating areas, and exterior spaces.",
+    services: ["Cafe Cleaning", "Kitchen Deep Clean", "Floor Care"],
+    image: "/images/portfolio/Himalayan Java Hattisar.jpeg",
   },
   {
     id: 6,
-    title: "Residential Water Tank Cleaning",
-    category: "specialized",
-    location: "Baluwatar, Kathmandu",
-    date: "September 2024",
-    description: "Complete cleaning and sanitization of a 5000L underground water tank.",
-    services: ["Water Tank Cleaning", "Sanitization"],
-    image: null,
+    title: "Himalayan Java Tripureshwor",
+    category: "hospitality",
+    location: "Tripureshwor, Kathmandu",
+    date: "2024",
+    description: "Professional cleaning services for popular coffee house location.",
+    services: ["Restaurant Cleaning", "Kitchen Cleaning", "Sanitization"],
+    image: "/images/portfolio/Himalayan Java Tripureshwor.jpg",
   },
   {
     id: 7,
-    title: "Boutique Store Opening Prep",
-    category: "commercial",
+    title: "Himalayan Java Jhamsikhel",
+    category: "hospitality",
     location: "Jhamsikhel, Lalitpur",
-    date: "September 2024",
-    description: "Pre-opening deep clean for a new fashion boutique including display areas and fitting rooms.",
-    services: ["Retail Cleaning", "Window Cleaning", "Floor Care"],
-    image: null,
+    date: "2024",
+    description: "Deep cleaning and maintenance for cafe premises.",
+    services: ["Cafe Cleaning", "Deep Cleaning", "Window Cleaning"],
+    image: "/images/portfolio/Java Jhamsikhel.jpeg",
   },
   {
     id: 8,
-    title: "Family Home Move-Out Clean",
-    category: "residential",
-    location: "Maharajgunj, Kathmandu",
-    date: "August 2024",
-    description: "Thorough move-out cleaning to ensure full deposit return for tenants.",
-    services: ["Move-Out Cleaning", "Deep Cleaning", "Kitchen & Bath"],
-    image: null,
+    title: "Himalayan Java Swoyambhu",
+    category: "hospitality",
+    location: "Swoyambhu, Kathmandu",
+    date: "2024",
+    description: "Complete cleaning solution for heritage area cafe location.",
+    services: ["Cafe Cleaning", "Floor Care", "Sanitization"],
+    image: "/images/portfolio/HImalayan Java Swoyambhu.jpeg",
   },
   {
     id: 9,
-    title: "Sofa & Carpet Restoration",
-    category: "specialized",
-    location: "Sanepa, Lalitpur",
-    date: "August 2024",
-    description: "Professional cleaning and stain removal for a living room set including 2 sofas and carpet.",
-    services: ["Sofa Cleaning", "Carpet Cleaning", "Stain Removal"],
-    image: null,
+    title: "Himalayan Java Mandala Street",
+    category: "hospitality",
+    location: "Thamel, Kathmandu",
+    date: "2024",
+    description: "Professional cleaning for tourist hub cafe location.",
+    services: ["Restaurant Cleaning", "Kitchen Cleaning", "Floor Care"],
+    image: "/images/portfolio/Himalayan Java Mandala Street.jpg",
+  },
+  {
+    id: 10,
+    title: "Bikers Cafe Java Naxal",
+    category: "hospitality",
+    location: "Naxal, Kathmandu",
+    date: "2024",
+    description: "Specialized cleaning for themed cafe including unique decor maintenance.",
+    services: ["Cafe Cleaning", "Deep Cleaning", "Specialty Cleaning"],
+    image: "/images/portfolio/Bikers Cafe Java Naxal.jpeg",
+  },
+  {
+    id: 11,
+    title: "Coffee Ministry",
+    category: "hospitality",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Complete cafe cleaning and kitchen sanitization services.",
+    services: ["Cafe Cleaning", "Kitchen Deep Clean", "Sanitization"],
+    image: "/images/portfolio/Coffeee Ministry.jpeg",
+  },
+  {
+    id: 12,
+    title: "Himalayan Everest Insurance",
+    category: "commercial",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Corporate office cleaning for insurance company headquarters.",
+    services: ["Office Cleaning", "Carpet Cleaning", "Window Cleaning"],
+    image: "/images/portfolio/Himalayan Everest Insurance.jpg",
+  },
+  {
+    id: 13,
+    title: "Durbar Mall",
+    category: "commercial",
+    location: "Durbar Marg, Kathmandu",
+    date: "2024",
+    description: "Large-scale commercial cleaning for shopping mall complex.",
+    services: ["Mall Cleaning", "Floor Care", "Common Area Maintenance"],
+    image: "/images/portfolio/Durbar Mall hj.jpeg",
+  },
+  {
+    id: 14,
+    title: "One Durbar",
+    category: "commercial",
+    location: "Durbar Marg, Kathmandu",
+    date: "2024",
+    description: "Premium commercial space cleaning and maintenance.",
+    services: ["Commercial Cleaning", "Floor Polishing", "Window Cleaning"],
+    image: "/images/portfolio/One durbar.jpeg",
+  },
+  {
+    id: 15,
+    title: "Audit Partnership",
+    category: "commercial",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Professional office cleaning for accounting firm.",
+    services: ["Office Cleaning", "Deep Cleaning", "Sanitization"],
+    image: "/images/portfolio/Audit Partnership.jpeg",
+  },
+  {
+    id: 16,
+    title: "Alpha Beta",
+    category: "commercial",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Commercial space cleaning and maintenance services.",
+    services: ["Office Cleaning", "Floor Care", "Window Cleaning"],
+    image: "/images/portfolio/Alpha Beta.jpg",
+  },
+  {
+    id: 17,
+    title: "Grande Hospital",
+    category: "healthcare",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Comprehensive hospital cleaning with focus on infection control.",
+    services: ["Hospital Cleaning", "Sanitization", "Specialized Cleaning"],
+    image: "/images/portfolio/Grande.png",
+  },
+  {
+    id: 18,
+    title: "Skin Arts Clinic",
+    category: "healthcare",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Specialized cleaning for dermatology clinic ensuring sterile environment.",
+    services: ["Clinic Cleaning", "Sanitization", "Deep Cleaning"],
+    image: "/images/portfolio/Skin Arts.jpeg",
+  },
+  {
+    id: 19,
+    title: "RIA Building",
+    category: "commercial",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Complete building cleaning including offices and common areas.",
+    services: ["Building Cleaning", "Floor Care", "Window Cleaning"],
+    image: "/images/portfolio/RIA Building.jpg",
+  },
+  {
+    id: 20,
+    title: "Ambition Guru",
+    category: "commercial",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Educational institute cleaning and maintenance.",
+    services: ["Office Cleaning", "Classroom Cleaning", "Sanitization"],
+    image: "/images/portfolio/Ambition Guru.jpeg",
+  },
+  {
+    id: 21,
+    title: "Kangaroo Education Foundation",
+    category: "commercial",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Professional cleaning for educational consultancy.",
+    services: ["Office Cleaning", "Deep Cleaning", "Floor Care"],
+    image: "/images/portfolio/Kangaroo Education Foundation.png",
+  },
+  {
+    id: 22,
+    title: "Nagarik News",
+    category: "commercial",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Media house office cleaning and maintenance.",
+    services: ["Office Cleaning", "Floor Care", "Sanitization"],
+    image: "/images/portfolio/Nagarik.jpg",
+  },
+  {
+    id: 23,
+    title: "TEN X Club",
+    category: "hospitality",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Nightclub and entertainment venue deep cleaning.",
+    services: ["Venue Cleaning", "Floor Care", "Deep Cleaning"],
+    image: "/images/portfolio/TEN X CLUB.JPG",
+  },
+  {
+    id: 24,
+    title: "XO Lounge",
+    category: "hospitality",
+    location: "Kathmandu",
+    date: "2024",
+    description: "Premium lounge cleaning and maintenance services.",
+    services: ["Lounge Cleaning", "Upholstery Cleaning", "Floor Care"],
+    image: "/images/portfolio/XO .jpeg",
   },
 ];
 
@@ -156,18 +307,14 @@ export function PortfolioGallery() {
                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow group cursor-pointer"
                 onClick={() => setSelectedProject(project)}
               >
-                {/* Image Placeholder */}
+                {/* Image */}
                 <div className="aspect-[4/3] bg-gray-200 relative overflow-hidden">
-                  <div className="w-full h-full flex items-center justify-center text-gray-400">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-2 flex items-center justify-center">
-                        <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <p className="text-xs">Before/After Photo</p>
-                    </div>
-                  </div>
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
@@ -239,15 +386,13 @@ export function PortfolioGallery() {
                 className="fixed inset-4 md:inset-10 lg:inset-20 bg-white rounded-2xl z-[101] overflow-hidden flex flex-col md:flex-row"
               >
                 {/* Image Side */}
-                <div className="md:w-1/2 bg-gray-200 flex items-center justify-center p-8">
-                  <div className="text-center text-gray-400">
-                    <div className="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <svg className="w-12 h-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <p>Before/After Gallery Placeholder</p>
-                  </div>
+                <div className="md:w-1/2 bg-gray-200 relative">
+                  <Image
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
 
                 {/* Content Side */}
