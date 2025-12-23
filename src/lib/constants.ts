@@ -3,7 +3,8 @@
 export const SITE_CONFIG = {
   name: "Khems Cleaning",
   tagline: "Professional Cleaning Services in Kathmandu",
-  phone: "+977-1-XXXXXXX", // TODO: Add actual phone
+  phone: "+977 01-4542169",
+  mobile: "+977 9801227494",
   email: "info@khemscleaning.com",
   address: "Kathmandu, Nepal",
   social: {

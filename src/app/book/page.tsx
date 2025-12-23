@@ -50,10 +50,10 @@ export default function BookPage() {
                     <div>
                       <p className="text-sm text-gray-500">Phone</p>
                       <a
-                        href="tel:+977-1-XXXXXXX"
+                        href="tel:+9779801227494"
                         className="text-gray-900 font-medium hover:text-[#0D9488]"
                       >
-                        +977-1-XXXXXXX
+                        +977 9801227494
                       </a>
                     </div>
                   </div>

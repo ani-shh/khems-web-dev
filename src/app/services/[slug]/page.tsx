@@ -74,7 +74,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
         addressLocality: "Kathmandu",
         addressCountry: "NP",
       },
-      telephone: "+977-1-XXXXXXX",
+      telephone: "+977 01-4542169",
     },
     areaServed: {
       "@type": "City",
