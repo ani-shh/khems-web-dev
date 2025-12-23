@@ -136,7 +136,7 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-6">
             {/* Phone Number */}
             <a
-              href={`tel:${SITE_CONFIG.phone}`}
+              href={`tel:${SITE_CONFIG.phone.replace(/[\s-]/g, '')}`}
               className="flex items-center gap-2 text-[#0D9488] font-semibold hover:text-[#0F766E] transition-colors"
             >
               <Phone size={18} />
@@ -281,7 +281,7 @@ export function Header() {
                 {/* Mobile Phone + CTA */}
                 <div className="pt-4 mt-4 border-t border-gray-100 space-y-3">
                   <a
-                    href={`tel:${SITE_CONFIG.phone}`}
+                    href={`tel:${SITE_CONFIG.phone.replace(/[\s-]/g, '')}`}
                     className="flex items-center gap-2 py-3 px-4 text-[#0D9488] font-semibold"
                   >
                     <Phone size={18} />

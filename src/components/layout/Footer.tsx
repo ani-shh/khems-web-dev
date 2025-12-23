@@ -44,11 +44,18 @@ export function Footer() {
               </p>
               <div className="space-y-3">
                 <a
-                  href={`tel:${SITE_CONFIG.phone}`}
+                  href={`tel:${SITE_CONFIG.phone.replace(/[\s-]/g, '')}`}
                   className="flex items-center gap-3 text-sm hover:text-white transition-colors"
                 >
                   <Phone size={16} className="text-[#0D9488]" />
                   {SITE_CONFIG.phone}
+                </a>
+                <a
+                  href={`tel:${SITE_CONFIG.mobile.replace(/[\s-]/g, '')}`}
+                  className="flex items-center gap-3 text-sm hover:text-white transition-colors"
+                >
+                  <Phone size={16} className="text-[#0D9488]" />
+                  {SITE_CONFIG.mobile}
                 </a>
                 <a
                   href={`mailto:${SITE_CONFIG.email}`}
