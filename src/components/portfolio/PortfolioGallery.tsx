@@ -22,7 +22,7 @@ const projects = [
     date: "2024",
     description: "Complete facility cleaning and sanitization for HAMS Hospital, ensuring highest hygiene standards for patient care areas.",
     services: ["Hospital Cleaning", "Sanitization", "Floor Care"],
-    image: "/images/portfolio/HAMS Hospital.png",
+    image: "/images/portfolio/HAMS Hospital.jpg",
   },
   {
     id: 2,
