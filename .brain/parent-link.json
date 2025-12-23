@@ -1,0 +1,17 @@
+{
+  "parent_brain": "/home/workspace/sadin-stark-brain/.sadin-stark",
+  "project_id": "khems-web-dev",
+  "project_name": "Khems Cleaning Website",
+  "instance_name": "Khems-Stark",
+  "created": "2025-12-09",
+  "relationship": "child",
+  "sync_patterns": [
+    "cross-project-patterns.md",
+    "sadin-global-profile.md"
+  ],
+  "inherit": {
+    "work_patterns": true,
+    "quality_standards": true,
+    "communication_style": true
+  }
+}
