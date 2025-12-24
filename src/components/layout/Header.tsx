@@ -104,7 +104,7 @@ export function Header() {
           {/* Logo - Left */}
           <Link href="/" className="flex items-center flex-shrink-0">
             <Image
-              src="/images/logo.png"
+              src="/images/logo.png?v=2"
               alt={SITE_CONFIG.name}
               width={180}
               height={60}
